@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>言知趣</title>
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+	<script src="/static/js/jquery-3.1.1.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+	<script src="/static/js/d3.min.js"></script>
+	<script src="/static/js/jqueryui.js"></script>
+	<script src="/static/js/publicFunction.js"></script>
+	</head>
+<body>
+<div class="header">
+    <span class="logo">语言政策领域知识图谱</span>
+    <ul class="nav nav-pills">
+        <li><a href="/home/">语言政策主题政策句检索</a></li>
+        <li class="active"><a href="/show_kg_search/">语言政策领域知识图谱检索</a></li>
+        <li><a href="/show_kg_analysis/">语言政策领域知识图谱追踪</a></li>
+		<li ><a href="/home/">返回平台首页</a></li>
+    </ul>
+</div>  
+<div class="container-fluid main">
+	<div class="col-sm-4 col-md-3 col-lg-3 left" style="max-width: 290px;">
+		<div class="left-search search-box input-group">
+			<!-- <div class="input-group-btn">
+		        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 10个 <span class="caret"></span></button>
+		        <ul class="dropdown-list">
+		          <li><a href="#">10个</a></li>
+		          <li><a href="#">20个</a></li>
+		          <li><a href="#">50个</a></li>			          
+		        </ul>
+		     </div> -->
+			<input type="text" class="form-control" name="keywords" placeholder="请输入关键词">
+			<div class="input-group-btn">
+		        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="label"> 政策知识标签 <span class="caret"></span></button>
+		        <ul class="dropdown-menu dropdown-menu-right">
+		          <li><a href="#" id="label">政策知识标签</a></li>
+		          <li><a href="#" id="law">语言政策</a></li>
+		          <li><a href="#" id="law_sentence">政策主题句</a></li>	
+		          <li><a href="#" id="sentence_keyword">政策关键词</a></li>		          
+		          <li><a href="#" id="topic">政策主题词</a></li>
+		          <li><a href="#" id="research_author">科研人员</a></li>
+		          <li><a href="#" id="research_fund">科研基金</a></li>
+		          <li><a href="#" id="research_keyword">科研关键词</a></li>
+		          <li><a href="#" id="research_organization">科研机构</a></li>
+		          <li><a href="#" id="research_paper">科研文献</a></li>
+		        </ul>
+		        <button class="btn btn-info" type="button">搜索</button>
+		     </div>
+			<!-- <span class="input-group-btn">
+		        <button class="btn btn-info" type="button">搜索</button>
+		     </span> -->
+		</div>
+		<div class="content-box" style="margin-top:30px;">
+			<p class="prop-tip">属性类型
+			</p>
+			<ul class="property-type clearfix">
+				
+			</ul>
+		</div>
+		<div class="content-box">
+			<p>关系类型</p>
+			<ul class="relation-type">
+				
+			</ul>
+		</div>
+			
+	</div>
+	<div class="col-sm-8 col-md-9 col-lg-9 show-pic">
+		<div class="picture-box">
+		</div>
+	</div>
+</div>
+<script src="/static/js/showRelPic.js"></script>
+<div class="ui grid" id="footer" align="center">
+ <p><a href="http://cnlr.blcu.edu.cn/">北京语言大学-国家语言资源监测与研究平面媒体中心</a>版权所有  developed by <a href="http://weibo.com/u/2111855055">liu huanyong</a></p>
+</div>
+</body>
+</html>

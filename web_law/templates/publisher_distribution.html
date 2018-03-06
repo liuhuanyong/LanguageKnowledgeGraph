@@ -1,0 +1,99 @@
+{% extends "count_base.html" %}
+ 
+{% block mainbody %}
+
+
+
+
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+        <div id="main" style="height:500px"></div>
+        <!-- ECharts单文件引入 -->
+        <script type="text/javascript">
+            var dom = document.getElementById("main");
+            var myChart = echarts.init(dom);
+            var app = {};
+            var option = null;
+            option = {
+                    title : {
+                        text: '语言政策部门分布',
+                        x:'center'
+                    },
+                    tooltip : {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    legend: {
+                        orient : 'vertical',
+                        x : 'left',
+                        data:['教育部','国务院','新疆维吾尔自治区教育厅','云南省人民代表大会','最高人民法院','国家语言文字工作委员会','全国人民代表大会','内蒙古自治区人民代表大会','国家工商行政管理总局','国家教育委员会','国家广播电影电视总局','青海省人民代表大会','新闻出版总署','最高人民检察院','公安部','国家税务总局','上海市语言文字工作委员会','贵州省人民代表大会','国家民族事务委员会','上海市教育委员会','财政部','交通运输部','文化部','商务部','中国证券监督管理委员会','中国银行业监督管理委员会','辽宁省人民代表大会','吉林省人民代表大会','国家食品药品监督管理总局','国家药品监督管理局']
+                    },
+                    toolbox: {
+                        show : true,
+                        feature : {
+                            mark : {show: true},
+                            dataView : {show: true, readOnly: false},
+                            magicType : {
+                                show: true, 
+                                type: ['pie', 'funnel'],
+                                option: {
+                                    funnel: {
+                                        x: '25%',
+                                        width: '50%',
+                                        funnelAlign: 'left',
+                                        max: 1548
+                                    }
+                                }
+                            },
+                            restore : {show: true},
+                            saveAsImage : {show: true}
+                        }
+                    },
+                    calculable : true,
+                    series : [
+                        {
+                            name:'发布部门',
+                            type:'pie',
+                            radius : '55%',
+                            center: ['70%', '60%'],
+                            data:[
+                                    {value:167, name:'教育部'},
+                                    {value:96, name:'国务院'},
+                                    {value:53, name:'新疆维吾尔自治区教育厅'},
+                                    {value:51, name:'云南省人民代表大会'},
+                                    {value:48, name:'最高人民法院'},
+                                    {value:45, name:'国家语言文字工作委员会'},
+                                    {value:43, name:'全国人民代表大会'},
+                                    {value:33, name:'内蒙古自治区人民代表大会'},
+                                    {value:32, name:'国家工商行政管理总局'},
+                                    {value:29, name:'国家教育委员会'},
+                                    {value:27, name:'国家广播电影电视总局'},
+                                    {value:27, name:'青海省人民代表大会'},
+                                    {value:26, name:'新闻出版总署'},
+                                    {value:25, name:'最高人民检察院'},
+                                    {value:23, name:'公安部'},
+                                    {value:23, name:'国家税务总局'},
+                                    {value:23, name:'上海市语言文字工作委员会'},
+                                    {value:22, name:'贵州省人民代表大会'},
+                                    {value:22, name:'国家民族事务委员会'},
+                                    {value:22, name:'上海市教育委员会'},
+                                    {value:20, name:'财政部'},
+                                    {value:20, name:'交通运输部'},
+                                    {value:19, name:'文化部'},
+                                    {value:18, name:'商务部'},
+                                    {value:18, name:'中国证券监督管理委员会'},
+                                    {value:17, name:'中国银行业监督管理委员会'},
+                                    {value:17, name:'辽宁省人民代表大会'},
+                                    {value:16, name:'吉林省人民代表大会'},
+                                    {value:16, name:'国家食品药品监督管理总局'},
+                                    {value:15, name:'国家药品监督管理局'},
+                            ]
+                        }
+                    ]
+                };
+                         
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+        </script>
+
+  {% endblock %}  

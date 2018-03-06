@@ -1,0 +1,19 @@
+{% extends "content_base.html" %}
+ 
+{% block mainbody %}
+      <h4 class="ui horizontal dark divider header"><i class="bar chart icon"></i>颁布年份列表</h4>
+         <table class="ui  olive table">
+            <tr><th class="three wide"></th>
+            <th class="three wide" ></th>
+                <th class="three wide"></th>
+            <th class="three wide" ></th>
+            </tr>
+            {% for result in year_list %}
+            <tr>
+                {% for item in result %}
+                <td><a href="/show_picture_year/?year={{item}}">{{item}}</a></td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+   {% endblock %}

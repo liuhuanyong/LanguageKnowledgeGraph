@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>语言政策领域知识平台</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/semantic.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/semantic.css"/>
+    <script type="text/javascript" src="/static/js/semantic.min.js"></script>
+    <script type="text/javascript" src="/static/js/semantic.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/echarts.min.js"></script>
+    <script type="text/javascript" src="/static/js/echarts.js"></script>
+    <script src="/static/js/china.js"></script>
+</head>
+<body>
+
+
+<div class="ui grid" id="header" align="center">
+    <div class="sixteen wide column">
+       <div class="ui menu" style="margin: 0">
+        <div class="header item"><h1>语言政策领域知识与计量平台-LLKSP</h1> </div>
+           <a class="item" href='/time_distribution'><h2>语言政策文本计量检索</h2> </a>
+           <a class="item" href='/year_index'><h2>语言政策文本画像检索</h2></a>
+           <a class="item" href='/kg_home'><h2>语言政策领域知识图谱</h2></a>
+       </div>
+      <div class="ui menu" style="margin: 0">
+           <a class="item" href='/time_distribution'><h3>语言政策文本年份分布</h3> </a>
+           <a class="item" href='/publisher_distribution'><h3>语言政策发布部门分布</h3></a>
+           <a class="item" href='/power_distribution'><h3>语言政策效力层级分布</h3></a>
+           <a class="item" href='/region_distribution'><h3>语言政策地域分布</h3></a>
+       </div>
+    </div>
+</div>
+
+
+
+<div class="ui grid" id="main-container" align="center">
+    <div class="two wide column">
+    </div>
+    <div class="twelve wide column" >
+   
+      
+    {% block mainbody %}
+  
+
+    {% endblock %}
+
+
+
+
+    <div class="two wide column">
+    </div>
+</div>
+</div>
+
+<div class="ui grid" id="footer" align="center">
+    <div class="sixteen wide column" align="center">
+        <h3><a href="http://cnlr.blcu.edu.cn/">北京语言大学-国家语言资源监测与研究平面媒体中心</a>版权所有  developed by <a href="http://weibo.com/u/2111855055">liu huanyong</a></h3>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+{% extends "count_base.html" %}
+ 
+{% block mainbody %}
+
+
+
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+        <div id="main" style="height:500px"></div>
+        <!-- ECharts单文件引入 -->
+        <script type="text/javascript">
+            var dom = document.getElementById("main");
+            var myChart = echarts.init(dom);
+            var app = {};
+            var option = null;
+            option = {
+              
+                    tooltip : {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    legend: {
+                        orient : 'vertical',
+                        x : 'left',
+                        data:
+                        ['地方政府规范性文件','民族自治地方自治条例、单行条例','部门规范性文件','地方性法规','部门规章',
+                        '国务院规范性文件','司法解释','部门联合规范性文件','地方政府规章','领导讲话','行政法规','一般性法律',
+                        '部门联合规章','中共中央文件','基本法律','中共中央决议','宪法']
+                    },
+                    toolbox: {
+                        show : true,
+                        feature : {
+                            mark : {show: true},
+                            dataView : {show: true, readOnly: false},
+                            magicType : {
+                                show: true, 
+                                type: ['pie', 'funnel'],
+                                option: {
+                                    funnel: {
+                                        x: '25%',
+                                        width: '50%',
+                                        funnelAlign: 'center',
+                                        max: 1548
+                                    }
+                                }
+                            },
+                            restore : {show: true},
+                            saveAsImage : {show: true}
+                        }
+                    },
+                    calculable : true,
+                    series : [
+                        {
+                            name:'访问来源',
+                            type:'pie',
+                            radius : ['50%', '70%'],
+                            itemStyle : {
+                                normal : {
+                                    label : {
+                                        show : false
+                                    },
+                                    labelLine : {
+                                        show : false
+                                    }
+                                },
+                                emphasis : {
+                                    label : {
+                                        show : true,
+                                        position : 'center',
+                                        textStyle : {
+                                            fontSize : '30',
+                                            fontWeight : 'bold'
+                                        }
+                                    }
+                                }
+                            },
+                            data:[
+                                {value:581, name:'地方政府规范性文件'},
+                                {value:477, name:'民族自治地方自治条例、单行条例'},
+                                {value:467, name:'部门规范性文件'},
+                                {value:144, name:'地方性法规'},
+                                {value:128, name:'部门规章'},
+                                {value:76, name:'国务院规范性文件'},
+                                {value:72, name:'司法解释'},
+                                {value:62, name:'部门联合规范性文件'},
+                                {value:50, name:'地方政府规章'},
+                                {value:28, name:'领导讲话'},
+                                {value:26, name:'行政法规'},
+                                {value:17, name:'一般性法律'},
+                                {value:17, name:'部门联合规章'},
+                                {value:13, name:'中共中央文件'},
+                                {value:6, name:'基本法律'},
+                                {value:3, name:'中共中央决议'},
+                                {value:3, name:'宪法'},
+
+                            ]
+                        }
+                    ]
+                };
+                    
+                         
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+        </script>
+
+{% endblock %}

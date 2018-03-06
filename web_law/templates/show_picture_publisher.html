@@ -1,0 +1,254 @@
+{% extends "content_base.html" %} 
+{% block mainbody %}
+        <h2 class="ui horizontal divider header"><i class="tag icon"></i> {{publisher}} 知识信息分布</h2>
+        <div id="law_topic_info">
+  
+           <div id="main" style="height:700px"></div>
+                <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+                 
+                <script type="text/javascript">
+                     // 路径配置
+                     //接受Django发来的字典数据 key是year。然后是一个数组，第一个代表正向。第二个代表负向
+                    
+                        
+                        var labelDict = {{label_dict|safe}}; 
+                        var yearDict = {{law_year_dict|safe}};
+                        var topicDict ={{topic_dict|safe}};
+                        var powerDict={{law_power_dict|safe}};
+                        var staffDict=[];
+                        
+                        function staffCreate(labelDict){
+                            var staff=[];           
+                            for(var item in labelDict){
+                                var staffObj={}
+                                staffObj.value=labelDict[item];
+                                staffObj.name=item;
+                                staffObj.itemStyle={
+                                            normal: {
+                                                        label:{show:function(){
+                                                                 if(staffObj.value==0)
+                                                                    {return false;}
+                                                            }()
+                                                        },
+                                                        labelLine: { show: function () {
+                                                                               if (staffObj.value==0)
+                                                                                { return false; }
+                                                                        } ()
+                                                        },                                     
+                                             },
+                                             emphasis: {  }
+                                 }
+                                staff.push(staffObj);
+                            }
+                            return staff;
+                        }
+                        staffDict.push(staffCreate(labelDict))
+                        staffDict.push(staffCreate(yearDict))
+                        staffDict.push(staffCreate(powerDict))
+                        staffDict.push(staffCreate(topicDict));
+                        var companyName = "国家语言资源";//{{  companyName | safe }};
+                        if (labelDict == '') {
+                            console.log('did not find');
+                            nodataImg();
+                        }
+                        else{
+                              require.config({
+                                   paths: {
+                                        echarts: 'http://echarts.baidu.com/build/dist'
+                                    }
+                               });
+                             
+                                // 使用
+                                require(
+                                    [
+                                        'echarts',
+                                        'echarts/chart/bar',
+                                        'echarts/chart/line',
+                                        'echarts/chart/pie',
+                                        'echarts/chart/funnel',
+                                    ],
+                                    function (ec) {
+                                        // 基于准备好的dom，初始化echarts图表
+                                        var myChart = ec.init(document.getElementById('main')); 
+
+                                        var legendData = ['标签','年份','地区','主题']
+
+                                        var radius = '20%';
+                                        option = {
+                                            legend: {
+                                                x : 'left',
+                                            //    y : 'bottom',
+                                                data:legendData
+                                            },
+                                            title : {                       
+                                                 x: 'center'
+                                            },
+                                            tooltip:{
+                                                trigger:'item',
+                                                formatter:'{a}情况 <br/>{b} : {c} ({d}%)'
+                                            },
+                                            toolbox: {
+                                                show : true,
+                                                feature : {
+                                                    dataView : {show: true, readOnly: false},
+                                                    magicType : {
+                                                        show: false, 
+                                                        type: ['pie', 'funnel'],
+                                                        option: {
+                                                            funnel: {
+                                                                width: '10%',
+                                                                height: '40%',
+                                                                itemStyle : {
+                                                                    normal : {
+                                                                        label : {
+                                                                            formatter : function (params){
+                                                                                console.log(params);
+                                                                                return 'other\n' + Math.round(params.percent*100)/100 + '%\n'
+                                                                            },
+                                                                            textStyle: {
+                                                                                baseline : 'left'
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                } 
+                                                            }
+                                                        }
+                                                    },
+                                                    restore : {show: true},
+                                                    saveAsImage : {show: true}
+                                                }
+                                            }
+                                        };
+
+                                        var seriesArray = []
+
+                                        for(var i=0;i<legendData.length;i++){
+                                            year = legendData[i]
+                                            tmpSeriesObj = {}
+                                            tmpSeriesObj.type = 'pie'
+                                            tmpSeriesObj.name=legendData[i];
+                                            tmpSeriesObj.radius = radius
+                                            //tmpSeriesObj.itemStyle = labelFromatter
+                                            tmpSeriesObj.center = []
+                                            centerPositon = (20+30*i).toString()+'%'
+                                            //tmpSeriesObj.x = (24+40*i).toString()+'%'
+                                            tmpSeriesObj.center.push(centerPositon)
+                                            // console.log((int)(i/4))
+                                            tmpSeriesObj.center.push("20%")
+                                            if (i>=3) {
+                                               tmpSeriesObj.center=["50%","70%"] 
+                                            }
+                                            //console.log(tmpSeriesObj.center)
+                                            tmpSeriesObj.data= staffDict[i];
+
+                                            seriesArray.push(tmpSeriesObj);
+                                        }
+                                               //console.log(seriesArray)   ;          
+                                       option.series =seriesArray
+                                       myChart.setOption(option); 
+                                    });
+                        }
+                    
+                </script>
+
+        </div>
+
+ <h2 class="ui horizontal divider header"><i class="tag icon"></i> {{publisher}} 政策关键词</h2>
+      <div class="ui raised segment">
+          <div id="main_2" style="height:600px"></div>
+    <!-- ECharts单文件引入 -->
+                  <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+                  <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+                  <script type="text/javascript">
+                      // 路径配置
+                      require.config({
+                          paths: {
+                              echarts: 'http://echarts.baidu.com/build/dist'
+                          }
+                      });
+
+                      // 使用
+                      require(
+                          [
+                              'echarts',
+                              'echarts/chart/wordCloud' // 使用柱状图就加载bar模块，按需加载
+                          ],
+
+                          function show_data(ec) {
+                              // 基于准备好的dom，初始化echarts图表
+                              var myChart = ec.init(document.getElementById('main_2'));
+                              // 同步执行
+
+              function createRandomItemStyle() {
+                  return {
+                      normal: {
+                          color: 'rgb(' + [
+                              Math.round(Math.random() * 160),
+                              Math.round(Math.random() * 160),
+                              Math.round(Math.random() * 160)
+                          ].join(',') + ')'
+                      }
+                  };
+              }
+
+              option = {
+                  title: {
+                      text: '关键词词云',
+                  },
+                  tooltip: {
+                      show: true
+                  },
+                  series: [{
+                      name: '关键词词云',
+                      type: 'wordCloud',
+                      size: ['100%', '100%'],
+                      textRotation : [0, 45, 90, -45],
+                      textPadding: 0,
+                      autoSize: {
+                          enable: true,
+                          minSize: 14
+                      },
+                      data: function get_data(){
+                          var key_list ={{key_keywords|safe}};
+                          var value_list={{value_keywords|safe}};
+                          var result_list=[];
+                          for (i in key_list)
+                          {
+                              var item={
+                              name:key_list[i] ,
+                              value: value_list[i],
+                              itemStyle: createRandomItemStyle()
+                              }
+                              result_list.push(item);
+                          };
+                          return result_list;
+                          }(),
+                  }]
+                  };
+                              // 为echarts对象加载数据
+                              myChart.setOption(option);
+                          }
+                      );
+                  </script>
+                 
+                  
+                      <h2 class="ui horizontal divider header"><i class="tag icon"></i> {{publisher}} 语言政策列表</h2>
+                    <div id="law_list" align="center">
+                      <table class="ui unstackable table">
+                        <thead>
+                          <tr>
+                            <th>语言政策文本</th> 
+                            <th>操作栏</th> 
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {%for item in law_list %}
+                          <tr>
+                          <td>{{item}}</td>
+                          <td><a href="/show_picture_law/?name={{item}}">查看该政策文本</a></td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+{% endblock %}

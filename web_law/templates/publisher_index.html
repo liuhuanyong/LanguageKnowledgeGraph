@@ -1,0 +1,22 @@
+{% extends "content_base.html" %}
+ 
+{% block mainbody %}
+
+
+
+      <h4 class="ui horizontal dark divider header"><i class="bar chart icon"></i>发布部门列表</h4>
+         <table class="ui  olive table">
+            <tr><th class="three wide"></th>
+            <th class="three wide" ></th>
+                <th class="three wide"></th>
+            <th class="three wide" ></th>
+            </tr>
+            {% for result in publisher_list %}
+            <tr>
+                {% for item in result %}
+                <td><a href="/show_picture_publisher/?publisher={{item}}">{{item}}</a></td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    {% endblock%}

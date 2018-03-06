@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>语言政策领域知识图谱</title>
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+	<script src="/static/js/jquery-3.1.1.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jqueryui.js"></script>
+    <script src="/static/js/d3.min.js"></script>
+    <script src="/static/js/publicFunction.js"></script>
+	</head>
+<body>
+<div class="header">
+    <span class="logo">语言政策领域知识图谱</span>
+    <ul class="nav nav-pills">
+        <li><a href="/home/">语言政策主题政策句检索</a></li>
+        <li><a href="/show_kg_search/">语言政策领域知识图谱检索</a></li>
+        <li class="active"><a href="/show_kg_analysis/">语言政策领域知识图谱追踪</a></li>
+		<li ><a href="/home/">返回平台首页</a></li>
+    </ul>
+</div> 
+<div class="container-fluid main">
+	<div class="col-md-2 col-lg-2" style="padding-left: 0;">
+		<ul class="side-list">
+			<li>
+				<p class="side-list-title label-type">语言政策领域实体类型<span class="more-word">更多 &gt;&gt;</span></p>
+				<ul class="items clearfix" id="entities">
+					
+				</ul>
+			</li>
+			<li>
+				<p class="side-list-title relation-type">语言政策领域关系类型<span class="more-word">更多 &gt;&gt;</span></p>
+				<ul class="items clearfix" id="relations">
+					
+				</ul> 
+			</li>
+		</ul>
+	</div>
+	<div class="col-md-10 col-lg-10 main-right">			
+		<div class="toolbox tb1">
+			<ul class="toolbars">
+				<li class="input-group-btn">
+			        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 1个 <span class="caret"></span></button>
+			        <ul class="dropdown-menu">
+					  <li><a href="#">1个</a></li>
+					  <li><a href="#">5个</a></li>
+			          <li><a href="#">10个</a></li>
+			          <li><a href="#">20个</a></li>
+			          <li><a href="#">50个</a></li>			          
+			        </ul>
+			     </li>
+				<li class="running"><button class="btn btn-info">运行</button></li>
+				<li class="edit"><button class="btn btn-info">编辑</button></li>
+				<li class="save-edit"><button class="btn btn-info">保存</button></li>
+				<li class="cancel"></li>
+				<li class="toup"></li>
+				<li class="todown"></li>
+				<li class="toleft"></li>
+				<li class="toright"></li>
+			</ul>	
+			<div class="drop-box">
+				<ul class="droppable" style="position: relative;"></ul>
+			</div>
+			<div class="edit-box">
+			<br><br>
+					<div class="property-box">
+						<ul>							
+						</ul>
+						<div id="scrollbar1"></div>
+					</div>
+			</div>
+		</div>
+		<div class="toolbox tb2">
+			<ul class="toolbars">																	
+			</ul>	
+			<div class="result-list">				
+				<ul>											
+			
+				</ul>
+				<div id="scrollbar2"></div>
+				<div class="dialog"></div>
+			</div>
+			<div class="search-result"></div>
+		</div>
+	</div>
+</div>
+<script src="/static/js/main.js"></script>
+<script src="/static/js/smartScrollbar.js"></script>
+<script src="/static/js/draw-pics.js"></script>
+<div class="ui grid" id="footer" align="center">
+    
+ <p><a href="http://cnlr.blcu.edu.cn/">北京语言大学-国家语言资源监测与研究平面媒体中心</a>版权所有  developed by <a href="http://weibo.com/u/2111855055">liu huanyong</a></p>
+</div>
+</body>
+</html>
